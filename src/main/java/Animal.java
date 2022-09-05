@@ -1,11 +1,13 @@
 public class Animal {
     private int id;
+    private int idCliente;
     private String nome;
     private int idade;
     private boolean sexo; // false - Macho, true - Fêmea
 
-    public Animal(int id, String nome, int idade, boolean sexo) {
+    public Animal(int id, int idCliente, String nome, int idade, boolean sexo) {
         this.id = id;
+        this.idCliente = idCliente;
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
@@ -13,6 +15,14 @@ public class Animal {
 
     public int getId() {
         return id;
+    }
+    
+    public int getClienteId (){
+        return idCliente;
+    }
+    
+    public void setIdCliente (){
+        this.idCliente = idCliente;
     }
 
     public String getNome() {
@@ -37,5 +47,11 @@ public class Animal {
 
     public void setSexo(boolean sexo) {
         this.sexo = sexo;
+    }
+    
+    @Override
+    public String toString() {
+        String desc = "Animal {" + "id= " + id + ",idCliente= " + idCliente + ", nome= " + nome + ", idade= " + idade + ", sexo" + sexo + '}' + '\n';
+        return desc;
     }
 }

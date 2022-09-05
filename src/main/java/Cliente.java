@@ -3,15 +3,13 @@ public class Cliente {
     private String nome;
     private String endereco;
     private String telefone;
-    private String cep;
     private String email;
     
-    public Cliente(int id, String nome, String endereco, String telefone, String cep, String email) {
+    public Cliente(int id, String nome, String endereco, String telefone, String email) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.cep = cep;
         this.email = email;
     }
 
@@ -43,19 +41,17 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    @Override
+    public String toString() {
+        String desc = "Cliente {" + "id= " + id + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + '}' + '\n';
+        return desc;
     }
 }
