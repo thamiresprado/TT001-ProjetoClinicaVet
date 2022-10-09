@@ -18,4 +18,10 @@ public class Especie {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    @Override
+    public String toString() {
+        String desc = "Especie {" + "id= " + id + ", nome=" + nome + '}' + '\n';
+        return desc;
+    }
 }

@@ -32,7 +32,7 @@ public class TratamentoDAO extends DAO {
             stmt.setBoolean(6, encerrado);
             executeUpdate(stmt);
         } catch (SQLException ex) {
-            Logger.getLogger(TratamentoDAO.class.getNome()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TratamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return this.retrieveById(lastId("tratamento","id"));
@@ -91,7 +91,7 @@ public class TratamentoDAO extends DAO {
     public void update(Tratamento tratamento) {
         try {
             PreparedStatement stmt;
-            stmt = DAO.getConnection().prepareStatement("UPDATE tratamento SET nome=?, descricao=?, cep=?, email=?, telefone=? WHERE id=?"); 
+            stmt = DAO.getConnection().prepareStatement("UPDATE tratamento SET nome=?, dtIni=?, dtFim=?, idAnimal=?, WHERE id=?"); 
             stmt.setString(1, tratamento.getNome());
             stmt.setString(2, tratamento.getDescricao());
             stmt.setString(3, tratamento.getDtIni());

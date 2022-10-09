@@ -85,6 +85,10 @@ public class AnimalDAO extends DAO {
         List<Animal> animais = this.retrieve("SELECT * FROM animal WHERE id = " + id);
         return (animais.isEmpty()?null:animais.get(0));
     }
+    
+    public List retrieveByIdCliente(int idCliente) {
+        return this.retrieve("SELECT * FROM animal WHERE idCliente = " + idCliente);
+    }
 
     // RetrieveBySimilarName
     public List retrieveBySimilarName(String nome) {
@@ -118,5 +122,4 @@ public class AnimalDAO extends DAO {
             System.err.println("Exception: " + e.getMessage());
         }
     }
-
 }

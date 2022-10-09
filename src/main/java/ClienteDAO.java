@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Prof. Dr. Plinio Vilela - prvilela@unicamp.br
- */
+/
 public class ClienteDAO extends DAO {
     private static ClienteDAO instance;
 
@@ -99,9 +96,9 @@ public class ClienteDAO extends DAO {
             stmt = DAO.getConnection().prepareStatement("UPDATE cliente SET nome=?, end=?, email=?, telefone=? WHERE id=?");
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEndereco());
-            stmt.setString(4, cliente.getEmail());
-            stmt.setString(5, cliente.getTelefone());
-            stmt.setInt(6, cliente.getId());
+            stmt.setString(3, cliente.getEmail());
+            stmt.setString(4, cliente.getTelefone());
+            stmt.setInt(5, cliente.getId());
             executeUpdate(stmt);
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
@@ -118,5 +115,5 @@ public class ClienteDAO extends DAO {
             System.err.println("Exception: " + e.getMessage());
         }
     }
-
 }
+

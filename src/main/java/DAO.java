@@ -1,16 +1,11 @@
 
-// DAO Implementation for SQLite.
-/**
- * @author Prof. Dr. Plínio Vilela - prvilela@unicamp.br
- * @date 16 de Agosto de 2021
- */
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class DAO {
-    public static final String DBURL = "jdbc:sqlite:vet2021.db";
+    public static final String DBURL = "jdbc:sqlite:BDClinica.db";
     private static Connection con;
     protected static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -95,8 +90,8 @@ public abstract class DAO {
                                                         sexo BOOLEAN, 
                                                         idCliente INTEGER, 
                                                         idEspecie INTEGER, 
-                                                        FOREIGN KEY (idCliente) REFERENCES cliente(id) INTEGER, 
-                                                        FOREIGN KEY (idEspecie) REFERENCES especie(id) INTEGER); 
+                                                        FOREIGN KEY (idCliente) REFERENCES cliente(id), 
+                                                        FOREIGN KEY (idEspecie) REFERENCES especie(id)); 
                                                         """);
             executeUpdate(stmt);
             
@@ -104,7 +99,7 @@ public abstract class DAO {
             stmt = DAO.getConnection().prepareStatement("""
                                                         CREATE TABLE IF NOT EXISTS especie( 
                                                         id INTEGER PRIMARY KEY, 
-                                                        nome VARCHAR UNIQUE); 
+                                                        nome VARCHAR); 
                                                         """);
             executeUpdate(stmt);
             //UNIQUE: garante que aquele valor vai ser unico na tabela
@@ -125,11 +120,11 @@ public abstract class DAO {
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         descricao VARCHAR, 
-                                                        dataIni VARCHAR, 
-                                                        dataFim VARCHAR, 
+                                                        dtIni VARCHAR, 
+                                                        dtFim VARCHAR, 
                                                         idAnimal INTEGER, 
-                                                        FOREIGN KEY (idAnimal) REFERENCES animal(id), 
-                                                        encerrado BOOLEAN); 
+                                                        encerrado BOOLEAN, 
+                                                        FOREIGN KEY (idAnimal) REFERENCES animal(id));
                                                         """);
             executeUpdate(stmt);
             
@@ -154,17 +149,17 @@ public abstract class DAO {
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         descricao VARCHAR, 
-                                                        idConsulta INTEGER); 
+                                                        idConsulta INTEGER, 
                                                         FOREIGN KEY (idConsulta) REFERENCES consulta(id));  
                                                         """);
             executeUpdate(stmt);      
             
             // Default element for species:
-            stmt = DAO.getConnection().prepareStatement("INSERT OR IGNORE INTO especie (id, nome) VALUES (1, 'Cachorro')");
-            executeUpdate(stmt);
-            
-            stmt = DAO.getConnection().prepareStatement("INSERT OR IGNORE INTO especie (id, nome) VALUES (1, 'Gato')");
-            executeUpdate(stmt);
+//            stmt = DAO.getConnection().prepareStatement("INSERT OR IGNORE INTO especie (id, nome) VALUES (1, 'Cachorro')");
+//            executeUpdate(stmt);
+//            
+//            stmt = DAO.getConnection().prepareStatement("INSERT OR IGNORE INTO especie (id, nome) VALUES (1, 'Gato')");
+//            executeUpdate(stmt);
             
             return true;
         } catch (SQLException ex) {

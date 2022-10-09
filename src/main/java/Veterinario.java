@@ -38,4 +38,10 @@ public class Veterinario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+    @Override
+    public String toString() {
+        String desc = "Veterinario {" + "id= " + id + ", nome=" + nome + ", email=" + email + ", telefone= " + telefone + '}' + '\n';
+        return desc;
+    }
 }
