@@ -1,3 +1,5 @@
+package Model;
+
 public class Veterinario {
     private int id;
     private String nome;

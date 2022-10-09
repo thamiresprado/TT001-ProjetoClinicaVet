@@ -1,3 +1,5 @@
+package Model;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +32,7 @@ public class ExameDAO extends DAO {
             stmt.setInt(3, idConsulta);
             executeUpdate(stmt);
         } catch (SQLException ex) {
-            Logger.getLogger(ExameDAO.class.getNome()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ExameDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this.retrieveById(lastId("exame","id"));
     }

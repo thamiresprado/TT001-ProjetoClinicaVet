@@ -1,4 +1,9 @@
 
+import Model.VeterinarioDAO;
+import Model.TratamentoDAO;
+import Model.ConsultaDAO;
+import Model.ClienteDAO;
+import Model.AnimalDAO;
 import java.util.List;
 
 public class Main {

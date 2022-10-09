@@ -1,3 +1,5 @@
+package Model;
+
 public class Exame {
     private int id;
     private String nome;

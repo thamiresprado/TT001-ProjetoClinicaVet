@@ -1,3 +1,5 @@
+package Model;
+
 public class Especie {
     private int id;
     private String nome;

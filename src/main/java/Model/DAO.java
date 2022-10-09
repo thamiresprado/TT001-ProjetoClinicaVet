@@ -1,3 +1,5 @@
+package Model;
+
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -71,19 +73,19 @@ public abstract class DAO {
             PreparedStatement stmt;
             // Table client:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS cliente( 
+                                                        CREATE TABLE IF NOT EXISTS cliente ( 
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         end VARCHAR, 
                                                         telefone VARCHAR, 
-                                                        email VARCHAR); 
-                                                        """
-            );
+                                                        email VARCHAR
+                                                        ); 
+                                                        """);
             executeUpdate(stmt);
             
             // Table animal:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS animal( 
+                                                        CREATE TABLE IF NOT EXISTS animal ( 
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         idade INTEGER, 
@@ -91,32 +93,35 @@ public abstract class DAO {
                                                         idCliente INTEGER, 
                                                         idEspecie INTEGER, 
                                                         FOREIGN KEY (idCliente) REFERENCES cliente(id), 
-                                                        FOREIGN KEY (idEspecie) REFERENCES especie(id)); 
+                                                        FOREIGN KEY (idEspecie) REFERENCES especie(id)
+                                                        ); 
                                                         """);
             executeUpdate(stmt);
             
             // Table species:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS especie( 
+                                                        CREATE TABLE IF NOT EXISTS especie ( 
                                                         id INTEGER PRIMARY KEY, 
-                                                        nome VARCHAR); 
+                                                        nome VARCHAR
+                                                        ); 
                                                         """);
             executeUpdate(stmt);
             //UNIQUE: garante que aquele valor vai ser unico na tabela
             
             // Table vet:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS veterinario( 
+                                                        CREATE TABLE IF NOT EXISTS veterinario ( 
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         email VARCHAR, 
-                                                        telefone VARCHAR); 
+                                                        telefone VARCHAR
+                                                        ); 
                                                         """);
             executeUpdate(stmt);    
             
             // Table treatment:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS tratamento( 
+                                                        CREATE TABLE IF NOT EXISTS tratamento ( 
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         descricao VARCHAR, 
@@ -124,13 +129,14 @@ public abstract class DAO {
                                                         dtFim VARCHAR, 
                                                         idAnimal INTEGER, 
                                                         encerrado BOOLEAN, 
-                                                        FOREIGN KEY (idAnimal) REFERENCES animal(id));
+                                                        FOREIGN KEY (idAnimal) REFERENCES animal(id)
+                                                        );
                                                         """);
             executeUpdate(stmt);
             
             // Table appointment:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS consulta( 
+                                                        CREATE TABLE IF NOT EXISTS consulta ( 
                                                         id INTEGER PRIMARY KEY, 
                                                         data VARCHAR, 
                                                         descricao VARCHAR, 
@@ -139,18 +145,20 @@ public abstract class DAO {
                                                         idTratamento INTEGER, 
                                                         FOREIGN KEY (idAnimal) REFERENCES animal(id), 
                                                         FOREIGN KEY (idVet) REFERENCES veterinario(id), 
-                                                        FOREIGN KEY (idTratamento) REFERENCES tratamento(id));  
+                                                        FOREIGN KEY (idTratamento) REFERENCES tratamento(id)
+                                                        );  
                                                         """);
             executeUpdate(stmt);    
             
              // Table exam:
             stmt = DAO.getConnection().prepareStatement("""
-                                                        CREATE TABLE IF NOT EXISTS exame( 
+                                                        CREATE TABLE IF NOT EXISTS exame ( 
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         descricao VARCHAR, 
                                                         idConsulta INTEGER, 
-                                                        FOREIGN KEY (idConsulta) REFERENCES consulta(id));  
+                                                        FOREIGN KEY (idConsulta) REFERENCES consulta(id)
+                                                        );  
                                                         """);
             executeUpdate(stmt);      
             
