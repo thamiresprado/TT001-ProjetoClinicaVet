@@ -104,7 +104,7 @@ public class AnimalDAO extends DAO {
             stmt = DAO.getConnection().prepareStatement("UPDATE animal SET nome=?, idade=?, sexo=?, idCliente=?, idEspecie=? WHERE id=?");
             stmt.setString(1, animal.getNome());
             stmt.setInt(2, animal.getIdade());
-            stmt.setBoolean(3, animal.getSexo());
+            stmt.setString(3, animal.getSexo());
             stmt.setInt(4, animal.getClienteId());
             stmt.setInt(5, animal.getidEspecie());
             stmt.setInt(6, animal.getId());

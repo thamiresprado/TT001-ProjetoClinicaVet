@@ -4,16 +4,21 @@ import Model.TratamentoDAO;
 import Model.ConsultaDAO;
 import Model.ClienteDAO;
 import Model.AnimalDAO;
+import Model.Cliente;
+import Model.Especie;
+import Model.EspecieDAO;
+import Model.ExameDAO;
+import Model.Veterinario;
 import java.util.List;
 
 public class Main {
         public static void  main (String[] args){
             
 //----------------------------------- CLIENTE
-            System.out.println("Clientes adicionados");
-            ClienteDAO.getInstance().create("Cliente 1", "Rua 1", "0000-0000", "cliente1@gmail.com");
-            ClienteDAO.getInstance().create("Cliente 2", "Rua 2", "0000-0000", "cliente2@gmail.com");
-            ClienteDAO.getInstance().create("Cliente 3", "Rua 3", "0000-0000", "cliente3@gmail.com");
+//            System.out.println("Clientes adicionados");
+//            ClienteDAO.getInstance().create("Cliente 1", "Rua 1", "0000-0000", "cliente1@gmail.com");
+//            ClienteDAO.getInstance().create("Cliente 2", "Rua 2", "0000-0000", "cliente2@gmail.com");
+//            ClienteDAO.getInstance().create("Cliente 3", "Rua 3", "0000-0000", "cliente3@gmail.com");
 //            
 //            System.out.println(ClienteDAO.getInstance().retrieveAll());
 //            
@@ -38,12 +43,12 @@ public class Main {
 
 //----------------------------------- ANIMAL
             
-            System.out.println("Adicionando animais");
-            AnimalDAO.getInstance().create("Lulu", 12, true, 1, 1);
-            AnimalDAO.getInstance().create("Pepe", 12, false, 3, 2);
-            AnimalDAO.getInstance().create("Pipo", 12, false, 3, 2);
-//            
-//            System.out.println(AnimalDAO.getInstance().retrieveAll());
+//            System.out.println("Adicionando animais");
+//            AnimalDAO.getInstance().create("Lulu", 12, true, 1, 1);
+//            AnimalDAO.getInstance().create("Pepe", 12, false, 3, 2);
+//            AnimalDAO.getInstance().create("Pipo", 12, false, 3, 2);
+            
+            System.out.println(AnimalDAO.getInstance().retrieveAll());
 //            
 //            System.out.println("\nRetornando os animais do cliente com id 3");
 //            System.out.println(AnimalDAO.getInstance().retrieveByIdCliente(3));
@@ -54,41 +59,48 @@ public class Main {
 //            EspecieDAO.getInstance().create("Gato");
 //            EspecieDAO.getInstance().create("Pássaro");
 //            EspecieDAO.getInstance().create("Cobra");
-//            
-//            List<Especie> especies = EspecieDAO.getInstance().retrieveAll();
-//            
-//            for (Especie especie : especies) {
-//            System.out.println("id=" + especie.getId() + ", name=" + especie.getNome());
-//            }
+            
+//            System.out.println(EspecieDAO.getInstance().retrieveAll());
+            
+//            System.out.println(EspecieDAO.getInstance().retrieveById(3));
             
 //            Especie esp = EspecieDAO.getInstance().retrieveById(3);
-//            EspecieDAO.getInstance().delete(esp); //nao ta funcionando
+//            EspecieDAO.getInstance().delete(esp); 
+
+//              System.out.println(EspecieDAO.getInstance().retrieveAll());
             
             
 //----------------------------------- VETERINARIO
-//              System.out.println("Adicionando novos veterinarios");
-              VeterinarioDAO.getInstance().create("Vet1", "vet1@gmail.com", "0000-0000");
-              VeterinarioDAO.getInstance().create("Vet2", "vet2@gmail.com", "0000-0000");
+//            System.out.println("Adicionando novos veterinarios");
+//              VeterinarioDAO.getInstance().create("Vet1", "vet1@gmail.com", "0000-0000");
+//              VeterinarioDAO.getInstance().create("Vet2", "vet2@gmail.com", "0000-0000");
 //              
-//              List<Veterinario> veterinarios = VeterinarioDAO.getInstance().retrieveAll();
-//            
-//              for (Veterinario veterinario : veterinarios) {
-//              System.out.println("id=" + veterinario.getId() + ", name=" + veterinario.getNome());
-//              }
+//              System.out.println(VeterinarioDAO.getInstance().retrieveAll());
+
+//            System.out.println(VeterinarioDAO.getInstance().retrieveById(4));
 //              
+//               //Update em todos os campos
+//            Veterinario c1 = new Veterinario(4, "Juninho", "email@email", "1111-111");
+//            VeterinarioDAO.getInstance().update(c1);
+//              
+//            System.out.println(VeterinarioDAO.getInstance().retrieveById(4));
 
 //----------------------------------- TRATAMENTO
-                System.out.println("Adicionando tratamento");
-                TratamentoDAO.getInstance().create("Tratamento1", "descricao do tratamento", "09/10/2022", "tratamento aberto", 1, false);
+//                System.out.println("Adicionando tratamento");
+//                TratamentoDAO.getInstance().create("Tratamento1", "descricao do tratamento", "09/10/2022", "tratamento aberto", 1, false);
+//                TratamentoDAO.getInstance().create("Tratamento1", "descricao do tratamento", "09/10/2022", "tratamento aberto", 2, false);
+                  TratamentoDAO.getInstance().create("Tratamentooooo", "descricao do tratamento", "06/11/2022", "tratamento aberto", 1, false);
+                
+                System.out.println(TratamentoDAO.getInstance().retrieveByIdAnimal(1));
 
 
 //----------------------------------- CONSULTA
-                System.out.println("Adicionando consulta");
-                ConsultaDAO.getInstance().create("09/10/2022", "consulta de rotina", 1, 1, 1);
+//                System.out.println("Adicionando consulta");
+//                ConsultaDAO.getInstance().create("09/10/2022", "consulta de rotina", 1, 1, 1);
                 
 
 //----------------------------------- EXAME
-
+//                ExameDAO.getInstance().create("Coleta de sangue", "Ver se tem doença do carrapto", 1);
 
 
 

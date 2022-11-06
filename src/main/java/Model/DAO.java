@@ -30,7 +30,7 @@ public abstract class DAO {
         Statement s;
         ResultSet rs = null;
         try {
-            s = (Statement) con.createStatement();
+            s = (Statement) this.con.createStatement();
             rs = s.executeQuery(query);
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
@@ -48,7 +48,7 @@ public abstract class DAO {
         Statement s;
         int lastId = -1;
         try {
-            s = (Statement) con.createStatement();
+            s = (Statement) this.con.createStatement();
             ResultSet rs = s.executeQuery("SELECT MAX(" + primaryKey + ") AS id FROM " + tableName);
             if (rs.next()) {
                 lastId = rs.getInt("id");
@@ -102,7 +102,7 @@ public abstract class DAO {
             stmt = DAO.getConnection().prepareStatement("""
                                                         CREATE TABLE IF NOT EXISTS especie ( 
                                                         id INTEGER PRIMARY KEY, 
-                                                        nome VARCHAR
+                                                        nome VARCHAR UNIQUE
                                                         ); 
                                                         """);
             executeUpdate(stmt);

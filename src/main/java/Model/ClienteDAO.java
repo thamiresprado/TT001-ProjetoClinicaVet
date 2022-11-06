@@ -23,14 +23,14 @@ public class ClienteDAO extends DAO {
     }
 
 // CRUD    
-    public Cliente create(String nome, String end, String email, String telefone) {
+    public Cliente create(String nome, String end, String telefone, String email) {
         try {
             PreparedStatement stmt;
-            stmt = DAO.getConnection().prepareStatement("INSERT INTO cliente (nome, end, email, telefone) VALUES (?,?,?,?)");
+            stmt = DAO.getConnection().prepareStatement("INSERT INTO cliente (nome, end, telefone, email) VALUES (?,?,?,?)");
             stmt.setString(1, nome);
             stmt.setString(2, end);
-            stmt.setString(3, email);
-            stmt.setString(4, telefone);
+            stmt.setString(3, telefone);
+            stmt.setString(4, email);
             executeUpdate(stmt);
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,7 +49,7 @@ public class ClienteDAO extends DAO {
     private Cliente buildObject(ResultSet rs) {
         Cliente cliente = null;
         try {
-            cliente = new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("end"),  rs.getString("email"), rs.getString("telefone"));
+            cliente = new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("end"),  rs.getString("telefone"), rs.getString("email"));
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
         }
@@ -95,11 +95,11 @@ public class ClienteDAO extends DAO {
     public void update(Cliente cliente) {
         try {
             PreparedStatement stmt;
-            stmt = DAO.getConnection().prepareStatement("UPDATE cliente SET nome=?, end=?, email=?, telefone=? WHERE id=?");
+            stmt = DAO.getConnection().prepareStatement("UPDATE cliente SET nome=?, end=?, telefone=?, email=? WHERE id=?");
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEndereco());
-            stmt.setString(3, cliente.getEmail());
-            stmt.setString(4, cliente.getTelefone());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setString(4, cliente.getEmail());
             stmt.setInt(5, cliente.getId());
             executeUpdate(stmt);
         } catch (SQLException e) {
