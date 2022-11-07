@@ -108,6 +108,11 @@ public class Controller {
         }
     }
     
+    //Quando um novo cliente for selecionado, limpar os tratamentos exibidos no cliente anterior
+    public static void limpaExibicao(JTable table){
+        ((TratamentoTableModel)table.getModel()).clear();
+    }
+    
     //BUSCA NOS CAMPOS
     public static void busca(JTable table, JTextField campo){
         if(table.getModel() instanceof ClienteTableModel){
@@ -124,4 +129,7 @@ public class Controller {
         return ClienteDAO.getInstance().create(nome, end, telefone, email);
     }
     
+    public static Animal adicionaAnimal(String nome, int idade, boolean sexo, int idCliente, int idEspecie){
+        return AnimalDAO.getInstance().create(nome, idade, sexo, idCliente, idEspecie);
+    }
 }
