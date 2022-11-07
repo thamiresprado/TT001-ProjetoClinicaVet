@@ -187,6 +187,9 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyTyped"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -242,6 +245,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -260,6 +266,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField2">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField2KeyTyped"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
@@ -392,7 +401,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Consultas recentes:"/>
+            <Property name="text" type="java.lang.String" value="Tratamentos recentes:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField6">
@@ -553,7 +562,7 @@
                       <StringArray count="3">
                         <StringItem index="0" value="Veterin&#xe1;rio 1"/>
                         <StringItem index="1" value="Veterin&#xe1;rio 2"/>
-                        <StringItem index="2" value="Adicionar novo"/>
+                        <StringItem index="2" value="Gerenciar"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -837,8 +846,7 @@
                     <Component class="javax.swing.JTable" name="jTable5">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Compareceu" type="java.lang.Boolean"/>
+                          <Table columnCount="3" rowCount="4">
                             <Column editable="true" title="Consulta" type="java.lang.Object"/>
                             <Column editable="true" title="Exame solicitado" type="java.lang.Object"/>
                             <Column editable="true" title="Veterin&#xe1;rio respons&#xe1;vel" type="java.lang.Object"/>
@@ -877,6 +885,9 @@
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable4MousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

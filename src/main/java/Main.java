@@ -17,10 +17,10 @@ public class Main {
 //----------------------------------- CLIENTE
 //            System.out.println("Clientes adicionados");
 //            ClienteDAO.getInstance().create("Cliente 1", "Rua 1", "0000-0000", "cliente1@gmail.com");
-//            ClienteDAO.getInstance().create("Cliente 2", "Rua 2", "0000-0000", "cliente2@gmail.com");
-//            ClienteDAO.getInstance().create("Cliente 3", "Rua 3", "0000-0000", "cliente3@gmail.com");
-//            
-//            System.out.println(ClienteDAO.getInstance().retrieveAll());
+////            ClienteDAO.getInstance().create("Cliente 2", "Rua 2", "0000-0000", "cliente2@gmail.com");
+//            ClienteDAO.getInstance().create("Rodolfo", "Rua 3", "0000-0000", "cliente3@gmail.com");
+////            
+            System.out.println(ClienteDAO.getInstance().retrieveAll());
 //            
 //            System.out.println("\nRetornando o cliente com id 1");
 //            System.out.println(ClienteDAO.getInstance().retrieveById(1));
@@ -36,7 +36,7 @@ public class Main {
             
             
             //Deletando cliente do banco
-//            Cliente c3 = ClienteDAO.getInstance().retrieveById(2);
+//            Cliente c3 = ClienteDAO.getInstance().retrieveById(14);
 //            ClienteDAO.getInstance().delete(c3);
 //            
 //            System.out.println(ClienteDAO.getInstance().retrieveAll());
@@ -48,7 +48,7 @@ public class Main {
 //            AnimalDAO.getInstance().create("Pepe", 12, false, 3, 2);
 //            AnimalDAO.getInstance().create("Pipo", 12, false, 3, 2);
             
-            System.out.println(AnimalDAO.getInstance().retrieveAll());
+//            System.out.println(AnimalDAO.getInstance().retrieveAll());
 //            
 //            System.out.println("\nRetornando os animais do cliente com id 3");
 //            System.out.println(AnimalDAO.getInstance().retrieveByIdCliente(3));
@@ -89,27 +89,19 @@ public class Main {
 //                System.out.println("Adicionando tratamento");
 //                TratamentoDAO.getInstance().create("Tratamento1", "descricao do tratamento", "09/10/2022", "tratamento aberto", 1, false);
 //                TratamentoDAO.getInstance().create("Tratamento1", "descricao do tratamento", "09/10/2022", "tratamento aberto", 2, false);
-                  TratamentoDAO.getInstance().create("Tratamentooooo", "descricao do tratamento", "06/11/2022", "tratamento aberto", 1, false);
+//                  TratamentoDAO.getInstance().create("Tratamentooooo", "descricao do tratamento", "06/11/2022", "tratamento aberto", 1, false);
                 
-                System.out.println(TratamentoDAO.getInstance().retrieveByIdAnimal(1));
+//                System.out.println(TratamentoDAO.getInstance().retrieveByIdAnimal(1));
 
 
 //----------------------------------- CONSULTA
 //                System.out.println("Adicionando consulta");
 //                ConsultaDAO.getInstance().create("09/10/2022", "consulta de rotina", 1, 1, 1);
-                
+//                  ConsultaDAO.getInstance().create("09/10/2022", "mais uma", 1, 1, 1);
+//                  System.out.println(ConsultaDAO.getInstance().retrieveByIdTratamento(1));
 
 //----------------------------------- EXAME
 //                ExameDAO.getInstance().create("Coleta de sangue", "Ver se tem doença do carrapto", 1);
-
-
-
-
-
-
-
-
-
 
         }
 }

@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
-
-import Model.AnimalDAO;
-import Model.TratamentoDAO;
-import java.util.ArrayList;
-
 
 /**
  *
- * @author thamiresp
+ * @author Thamires Prado RA:244651
  */
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
    
@@ -23,10 +15,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void initMyComponents(){
         jTable1.setModel(new ClienteTableModel(Controller.Controller.getAllClientes()));
-//        jTable3.setModel(new TratamentoTableModel(Controller.Controller.getAllTratamentos()));
-        jTable4.setModel(new TratamentoTableModel(Controller.Controller.getAllTratamentos()));
-        jTable5.setModel(new DetalhesTratTableModel(Controller.Controller.getAllConsultas()));
         Controller.Controller.setTextFields(jTextField5, jTextField3);
+        jTextField3.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField5.setEditable(false);
     }
    
     @SuppressWarnings("unchecked")
@@ -116,6 +108,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,12 +137,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1.setText("Remover");
 
         jButton2.setText("Adicionar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel3.setText("Animal");
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel4.setText("Buscar:");
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -242,7 +250,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel7.setText("Cliente:");
 
-        jLabel8.setText("Consultas recentes:");
+        jLabel8.setText("Tratamentos recentes:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -310,7 +318,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel10.setText("Veterinário:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinário 1", "Veterinário 2", "Adicionar novo" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinário 1", "Veterinário 2", "Gerenciar" }));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel11.setText("Dados da Consulta");
@@ -473,23 +481,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Compareceu", "Consulta", "Exame solicitado", "Veterinário responsável"
+                "Consulta", "Exame solicitado", "Veterinário responsável"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane5.setViewportView(jTable5);
 
         jButton7.setForeground(new java.awt.Color(204, 0, 0));
@@ -543,6 +543,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jTable4.setToolTipText("");
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable4MousePressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -609,13 +614,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
         jTextField4.setText("");
         
-        Controller.Controller.setSelected(((ClienteTableModel)jTable1.getModel()).getItem(jTable1.getSelectedRow()));
-        
-        if(Controller.Controller.getClienteSelecionado() != null){
-            Controller.Controller.setTableModel(jTable2, new AnimalTableModel(AnimalDAO.getInstance().retrieveByIdCliente(Controller.Controller.getClienteSelecionado().getId()))); 
-        } else{
-            Controller.Controller.setTableModel(jTable2, new AnimalTableModel(new ArrayList()));
-        }
+        Controller.Controller.setSelected(((ClienteTableModel)jTable1.getModel()).getItem(jTable1.getSelectedRow())); //retorna a linha selecionada e o setselected define qual é o objeto
+        Controller.Controller.tabelaClienteSelected(jTable2);
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
@@ -623,12 +623,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         jTextField4.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString());
         
-        if(Controller.Controller.getAnimalSelecionado() != null){
-            Controller.Controller.setTableModel(jTable3, new TratamentoTableModel(TratamentoDAO.getInstance().retrieveByIdAnimal(Controller.Controller.getAnimalSelecionado().getId())));
-        }else{
-            Controller.Controller.setTableModel(jTable3, new TratamentoTableModel(new ArrayList()));
-        }
+        Controller.Controller.tabelaAnimalSelected(jTable3);
+        Controller.Controller.tabelaAnimalSelected(jTable4);
     }//GEN-LAST:event_jTable2MousePressed
+
+    private void jTable4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MousePressed
+        Controller.Controller.setSelected(((TratamentoTableModel)jTable4.getModel()).getItem(jTable4.getSelectedRow()));
+        
+        Controller.Controller.tabelaTratamentoSelected(jTable5);
+    }//GEN-LAST:event_jTable4MousePressed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        Controller.Controller.busca(jTable1, jTextField1);
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        Controller.Controller.busca(jTable2, jTextField2);
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ((ClienteTableModel)jTable1.getModel()).addItem(Controller.Controller.adicionaCliente("", "", "", ""));
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     
     public static void main(String args[]) {
