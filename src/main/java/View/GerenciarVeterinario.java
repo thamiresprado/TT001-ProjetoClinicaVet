@@ -5,6 +5,7 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
     public GerenciarVeterinario() {
         initComponents();
         initMyComponents();
+        this.setLocationRelativeTo(null);
     }
     
     private void initMyComponents(){
@@ -39,7 +40,7 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel1.setText("Veterinários da Clínica");
@@ -63,6 +64,11 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
                 "Nome", "Email", "Telefone"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable2MousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Adicionar");
@@ -130,16 +136,23 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        ((VeterinarioTableModel)jTable2.getModel()).addItem(Controller.Controller.adicionaVeterinario("", "", ""));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);        
+        this.dispose();
+        jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         Controller.Controller.busca(jTable2, jTextField1);
     }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
+//        jTextField4.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString());
+        Controller.Controller.setSelected(((AnimalTableModel)jTable2.getModel()).getItem(jTable2.getSelectedRow()));
+    }//GEN-LAST:event_jTable2MousePressed
 
     
     

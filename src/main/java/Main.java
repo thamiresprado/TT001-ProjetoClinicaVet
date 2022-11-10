@@ -20,7 +20,7 @@ public class Main {
 ////            ClienteDAO.getInstance().create("Cliente 2", "Rua 2", "0000-0000", "cliente2@gmail.com");
 //            ClienteDAO.getInstance().create("Rodolfo", "Rua 3", "0000-0000", "cliente3@gmail.com");
 ////            
-            System.out.println(ClienteDAO.getInstance().retrieveAll());
+//            System.out.println(ClienteDAO.getInstance().retrieveAll());
 //            
 //            System.out.println("\nRetornando o cliente com id 1");
 //            System.out.println(ClienteDAO.getInstance().retrieveById(1));
@@ -48,7 +48,7 @@ public class Main {
 //            AnimalDAO.getInstance().create("Pepe", 12, false, 3, 2);
 //            AnimalDAO.getInstance().create("Pipo", 12, false, 3, 2);
             
-//            System.out.println(AnimalDAO.getInstance().retrieveAll());
+            System.out.println(AnimalDAO.getInstance().retrieveAll());
 //            
 //            System.out.println("\nRetornando os animais do cliente com id 3");
 //            System.out.println(AnimalDAO.getInstance().retrieveByIdCliente(3));

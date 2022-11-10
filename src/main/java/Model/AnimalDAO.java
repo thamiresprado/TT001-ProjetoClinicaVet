@@ -23,13 +23,13 @@ public class AnimalDAO extends DAO {
     }
 
 // CRUD    
-    public Animal create(String nome, int idade, boolean sexo, int idCliente, int idEspecie) {
+    public Animal create(String nome, int idade, String sexo, int idCliente, int idEspecie) {
         try {
             PreparedStatement stmt;
             stmt = DAO.getConnection().prepareStatement("INSERT INTO animal (nome, idade, sexo, idCliente, idEspecie) VALUES (?,?,?,?,?)");
             stmt.setString(1, nome);
             stmt.setInt(2, idade);
-            stmt.setBoolean(3, sexo);
+            stmt.setString(3, sexo);
             stmt.setInt(4, idCliente);
             stmt.setInt(5, idEspecie);
             executeUpdate(stmt);
@@ -51,7 +51,7 @@ public class AnimalDAO extends DAO {
     private Animal buildObject(ResultSet rs) {
         Animal animal = null;
         try {
-            animal = new Animal(rs.getInt("id"), rs.getString("nome"), rs.getInt("idade"), rs.getBoolean("sexo"), rs.getInt("idCliente"), rs.getInt("idEspecie"));
+            animal = new Animal(rs.getInt("id"), rs.getString("nome"), rs.getInt("idade"), rs.getString("sexo"), rs.getInt("idCliente"), rs.getInt("idEspecie"));
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
         }

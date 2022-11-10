@@ -89,7 +89,7 @@ public abstract class DAO {
                                                         id INTEGER PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         idade INTEGER, 
-                                                        sexo BOOLEAN, 
+                                                        sexo VARCHAR, 
                                                         idCliente INTEGER, 
                                                         idEspecie INTEGER, 
                                                         FOREIGN KEY (idCliente) REFERENCES cliente(id), 

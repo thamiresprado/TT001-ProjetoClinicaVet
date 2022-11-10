@@ -4,11 +4,11 @@ public class Animal {
     private int id;
     private String nome;
     private int idade;
-    private boolean sexo; // false - Macho, true - Fêmea
+    private String sexo; // false - Macho, true - Fêmea
     private int idCliente;
     private int idEspecie;
 
-    public Animal(int id, String nome, int idade, boolean sexo, int idCliente, int idEspecie) {
+    public Animal(int id, String nome, int idade, String sexo, int idCliente, int idEspecie) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -38,11 +38,7 @@ public class Animal {
     }
 
     public String getSexo() {
-        if (sexo == false){
-           return "Macho"; 
-        } else {
-            return "Fêmea";
-        }
+        return sexo;
     }
 
     public void setNome(String nome) {
@@ -53,7 +49,7 @@ public class Animal {
         this.idade = idade;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
     
