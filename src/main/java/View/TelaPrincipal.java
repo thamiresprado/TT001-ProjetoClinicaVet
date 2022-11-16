@@ -1,6 +1,7 @@
 package View;
 
 import Model.VeterinarioDAO;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,6 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private void initMyComponents(){
+        this.setLocationRelativeTo(null);
         jTable1.setModel(new ClienteTableModel(Controller.Controller.getAllClientes()));
         Controller.Controller.setTextFields(jTextField5, jTextField3);
         jTextField3.setEditable(false);
@@ -311,17 +313,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel9.setText("Selecione um tratamento para agendar sua consulta:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nome do tratamento", "Data de Início"
-            }
-        ));
         jScrollPane3.setViewportView(jTable3);
 
         jLabel10.setText("Veterinário:");
@@ -681,6 +672,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         popup.setVisible(true);
     }//GEN-LAST:event_jTextField11MousePressed
   
+    public void receberVet (String nomeVet){
+        jTextField11.setText(nomeVet);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

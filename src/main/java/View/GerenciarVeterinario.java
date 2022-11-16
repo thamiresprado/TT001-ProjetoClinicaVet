@@ -2,13 +2,15 @@ package View;
 
 public class GerenciarVeterinario extends javax.swing.JFrame {
 
+    TelaPrincipal enviaTexto;
+
     public GerenciarVeterinario() {
         initComponents();
         initMyComponents();
         this.setLocationRelativeTo(null);
     }
-    
-    private void initMyComponents(){
+
+    private void initMyComponents() {
         jTable2.setModel(new VeterinarioTableModel(Controller.Controller.getAllVeterinarios()));
     }
 
@@ -136,13 +138,22 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ((VeterinarioTableModel)jTable2.getModel()).addItem(Controller.Controller.adicionaVeterinario("", "", ""));
+        ((VeterinarioTableModel) jTable2.getModel()).addItem(Controller.Controller.adicionaVeterinario("", "", ""));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);        
-        this.dispose();
-        jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString();
+        String enviar = jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString();
+
+        if (enviaTexto == null) {
+            enviaTexto = new TelaPrincipal();
+            enviaTexto.setVisible(true);
+            enviaTexto.receberVet(enviar);
+        } else {
+            enviaTexto.setVisible(true);
+            enviaTexto.setState(TelaPrincipal.NORMAL);
+            enviaTexto.receberVet(enviar);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -150,12 +161,9 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
-//        jTextField4.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString());
-        Controller.Controller.setSelected(((AnimalTableModel)jTable2.getModel()).getItem(jTable2.getSelectedRow()));
+        Controller.Controller.setSelected(((VeterinarioTableModel) jTable2.getModel()).getItem(jTable2.getSelectedRow()));
     }//GEN-LAST:event_jTable2MousePressed
 
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

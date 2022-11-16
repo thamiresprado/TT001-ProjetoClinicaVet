@@ -143,4 +143,11 @@ public class Controller {
     public static void defineVeterinario(JTable table, JTextField campo){
         campo.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
     }
+    
+    //PASSANDO VETERINARIO DO POPUP PARA TELA PRINCIPAL
+    public void receberVet (String nomeVet, JTextField campo){
+        campo.setText(nomeVet);
+    }
+    
+    
 }
