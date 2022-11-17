@@ -89,7 +89,8 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setForeground(new java.awt.Color(204, 0, 0));
+        jButton3.setBackground(new java.awt.Color(102, 0, 0));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Remover");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,17 +144,6 @@ public class GerenciarVeterinario extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String enviar = jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString();
-
-        if (enviaTexto == null) {
-            enviaTexto = new TelaPrincipal();
-            enviaTexto.setVisible(true);
-            enviaTexto.receberVet(enviar);
-        } else {
-            enviaTexto.setVisible(true);
-            enviaTexto.setState(TelaPrincipal.NORMAL);
-            enviaTexto.receberVet(enviar);
-        }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
