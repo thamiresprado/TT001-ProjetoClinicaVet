@@ -8,17 +8,19 @@ import java.util.List;
 public class VeterinarioTableModel extends GenericTableModel {
     
     public VeterinarioTableModel (List vDados){
-        super(vDados, new String[]{"Nome", "Email", "Telefone"});
+        super(vDados, new String[]{"ID", "Nome", "Email", "Telefone"});
     }
     
     @Override
     public Class<?> getColumnClass(int columnIndex){
         switch(columnIndex) {
             case 0:
-                return String.class;
+                return Integer.class;
             case 1:
                 return String.class;
             case 2:
+                return String.class;
+            case 3:
                 return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -31,10 +33,12 @@ public class VeterinarioTableModel extends GenericTableModel {
         
         switch(columnIndex) {
             case 0:
-                return veterinario.getNome();
+                return veterinario.getId();
             case 1:
-                return veterinario.getEmail();
+                return veterinario.getNome();
             case 2:
+                return veterinario.getEmail();
+            case 3:
                 return veterinario.getTelefone();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -47,12 +51,15 @@ public class VeterinarioTableModel extends GenericTableModel {
         
         switch(columnIndex) {
             case 0:
-                veterinario.setNome((String) aValue);
+                veterinario.getId();
                 break;
             case 1:
-                veterinario.setEmail((String) aValue);
+                veterinario.setNome((String) aValue);
                 break;
             case 2:
+                veterinario.setEmail((String) aValue);
+                break;
+            case 3:
                 veterinario.setTelefone((String) aValue);
                 break;
             default:

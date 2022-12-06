@@ -97,7 +97,7 @@ public class TratamentoDAO extends DAO {
     public void update(Tratamento tratamento) {
         try {
             PreparedStatement stmt;
-            stmt = DAO.getConnection().prepareStatement("UPDATE tratamento SET nome=?, dtIni=?, dtFim=?, idAnimal=?, WHERE id=?"); 
+            stmt = DAO.getConnection().prepareStatement("UPDATE tratamento SET nome=?, dtIni=?, dtFim=?, idAnimal=?, encerrado=? WHERE id=?"); 
             stmt.setString(1, tratamento.getNome());
             stmt.setString(2, tratamento.getDescricao());
             stmt.setString(3, tratamento.getDtIni());

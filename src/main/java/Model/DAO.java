@@ -111,7 +111,7 @@ public abstract class DAO {
             // Table vet:
             stmt = DAO.getConnection().prepareStatement("""
                                                         CREATE TABLE IF NOT EXISTS veterinario ( 
-                                                        id INTEGER PRIMARY KEY, 
+                                                        id VARCHAR PRIMARY KEY, 
                                                         nome VARCHAR, 
                                                         email VARCHAR, 
                                                         telefone VARCHAR

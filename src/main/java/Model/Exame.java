@@ -36,4 +36,10 @@ public class Exame {
     public int getIdConsulta() {
         return idConsulta;
     }
+    
+    @Override
+    public String toString() {
+        String desc = nome;
+        return desc;
+    }
 }

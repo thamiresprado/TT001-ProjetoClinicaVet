@@ -66,4 +66,10 @@ public class Tratamento {
     public void setEncerrado(boolean encerrado) {
         this.encerrado = encerrado;
     }  
+    
+    @Override
+    public String toString() {
+        String desc = "Tratamento {" + "id= " + id + ", nome= " + nome + ", descricao= " + descricao + ", dtIni= " + dtIni + '}' + ", dtfim= " + dtFim + ", idAnimal= " + idAnimal + ", encerrado = " + encerrado + '\n';
+        return desc;
+    }
 }

@@ -7,6 +7,7 @@ public class Consulta {
     private int idAnimal;
     private int idVet;
     private int idTratamento;
+    
 
     public Consulta(int id, String data, String descricao, int idAnimal, int idVet, int idTratamento) {
         this.id = id;
@@ -43,6 +44,10 @@ public class Consulta {
 
     public int getIdVet() {
         return idVet;
+    }
+    
+    public void setIdVet(int idVet) {
+        this.idVet = idVet;
     }
 
     public int getIdTratamento() {

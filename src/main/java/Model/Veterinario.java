@@ -43,7 +43,7 @@ public class Veterinario {
     
     @Override
     public String toString() {
-        String desc = "Veterinario {" + "id= " + id + ", nome=" + nome + ", email=" + email + ", telefone= " + telefone + '}' + '\n';
+        String desc = nome;
         return desc;
     }
 }

@@ -33,7 +33,7 @@ public class VeterinarioDAO extends DAO {
         } catch (SQLException ex) {
             Logger.getLogger(VeterinarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return this.retrieveById(lastId("veterinario","id"));
+        return this.retrieveById((lastId("veterinario","id")));
     }
     
     public boolean isLastEmpty(){
@@ -87,7 +87,7 @@ public class VeterinarioDAO extends DAO {
     // RetrieveBySimilarName
     public List retrieveBySimilarName(String nome) {
         return this.retrieve("SELECT * FROM veterinario WHERE nome LIKE '" + nome + "%'");
-    }    
+    } 
         
     // Updade
     public void update(Veterinario veterinario) {

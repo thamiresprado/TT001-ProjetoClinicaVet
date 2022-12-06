@@ -4,6 +4,7 @@ import Model.Animal;
 import Model.AnimalDAO;
 import Model.Cliente;
 import Model.ClienteDAO;
+import Model.Consulta;
 import Model.ConsultaDAO;
 import Model.Tratamento;
 import Model.TratamentoDAO;
@@ -17,6 +18,8 @@ import View.TratamentoTableModel;
 import View.VeterinarioTableModel;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -25,12 +28,16 @@ public class Controller {
     private static Animal animalSelecionado = null;
     private static Cliente clienteSelecionado = null;
     private static Tratamento tratamentoSelecionado = null;
+    private static Veterinario veterinarioSelecionado = null;
+    private static Consulta consultaSelecionada = null;
     private static JTextField clienteSelecionadoTextField = null;
     private static JTextField animalSelecionadoTextField = null;
+    private static JTextField veterinarioSelecionadoJTextField = null;
 
     public static void setTextFields(JTextField cliente, JTextField animal) {
         clienteSelecionadoTextField = cliente;
         animalSelecionadoTextField = animal;
+        
     }
 
     public static void setTableModel(JTable table, GenericTableModel tableModel) {
@@ -48,6 +55,14 @@ public class Controller {
     public static Tratamento getTratamentoSelecionado() {
         return tratamentoSelecionado;
     }
+    
+     public static Consulta getConsultaSelecionada() {
+        return consultaSelecionada;
+    }
+    
+    public static Veterinario getVeterinarioSelecionado() {
+        return veterinarioSelecionado;
+    }
 
     public static void setSelected(Object selected) {
         if (selected instanceof Cliente) {
@@ -59,6 +74,10 @@ public class Controller {
             animalSelecionadoTextField.setText(animalSelecionado.getNome());
         } else if (selected instanceof Tratamento) {
             tratamentoSelecionado = (Tratamento) selected;
+        } else if (selected instanceof Veterinario){
+            veterinarioSelecionado = (Veterinario) selected;
+        } else if (selected instanceof Consulta){
+            consultaSelecionada = (Consulta) selected;
         }
     }
 
@@ -93,9 +112,18 @@ public class Controller {
     }
 
     //Tabela animal exibe tratamentos do animal selecionado
-    public static void tabelaAnimalSelected(JTable table) {
+    public static void tabelaAnimalSelected1(JTable table) {
         if (getAnimalSelecionado() != null) {
             setTableModel(table, new TratamentoTableModel(TratamentoDAO.getInstance().retrieveByIdAnimal(Controller.getAnimalSelecionado().getId())));
+        } else {
+            Controller.setTableModel(table, new TratamentoTableModel(new ArrayList()));
+        }
+    }
+    
+     //Tabela animal exibe consultas do animal selecionado
+    public static void tabelaAnimalSelected2(JTable table) {
+        if (getAnimalSelecionado() != null) {
+            setTableModel(table, new DetalhesTratTableModel((ConsultaDAO.getInstance().retrieveByIdAnimal(Controller.getAnimalSelecionado().getId()))));
         } else {
             Controller.setTableModel(table, new TratamentoTableModel(new ArrayList()));
         }
@@ -136,12 +164,51 @@ public class Controller {
         //("", 0, false, clienteselecionado, 1)
     }
     
-    public static Veterinario adicionaVeterinario(String nome, String email, String telefone){
+    public static Veterinario adicionaVeterinario(int id, String nome, String email, String telefone){
         return VeterinarioDAO.getInstance().create(nome, email, telefone);
     }
     
-    public static void defineVeterinario(JTable table, JTextField campo){
-        campo.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+    public static Consulta adicionaConsulta(String data, String descricao, int idAnimal, int idVet, int idTratamento){
+        return ConsultaDAO.getInstance().create(data, descricao, idAnimal, idVet, idTratamento);
     }
     
+    public static Tratamento adicionaTratamento(String nome, String descricao, String dtIni, String dtFim, int idAnimal, boolean encerrado){
+        return TratamentoDAO.getInstance().create(nome, descricao, dtIni, dtFim, idAnimal, encerrado);
+    }
+    
+   //REMOVENDO
+   
+   public static void removerCliente(Cliente cliente) {
+       List <Animal> animais = AnimalDAO.getInstance().retrieveByIdCliente(cliente.getId());
+       for (Animal animal : animais){
+           AnimalDAO.getInstance().delete(animal);
+       }
+        ClienteDAO.getInstance().delete(cliente);
+    }
+   
+   public static void removerAnimal(Animal animal) {
+        AnimalDAO.getInstance().delete(animal);
+    }
+   
+   public static void removerVeterinario(Veterinario veterinario) {
+        VeterinarioDAO.getInstance().delete(veterinario);
+    }
+   
+   public static void removerConsulta(Consulta consulta) {
+        ConsultaDAO.getInstance().delete(consulta);
+    }
+   
+   public static void removerTratamento(Tratamento tratamento){
+       TratamentoDAO.getInstance().delete(tratamento);
+   }
+    
+   public static void filtraConsultas(JTable table, JCheckBox todos, JCheckBox hoje, JCheckBox vet){
+           String where = "";
+           if(!todos.isSelected()){
+               where = "WHERE data >= date('now')";
+           }
+           
+           String query = "SELECT * FROM consulta"+where+"ORDER BY data";
+           ((DetalhesTratTableModel) table.getModel()).addListOfItems(ConsultaDAO.getInstance().retrieve(query));
+   }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class TratamentoTableModel extends GenericTableModel {
     
     public TratamentoTableModel (List vDados){
-        super(vDados, new String[]{"Nome", "Data de Inicio", "Data de Fim", "Concluido"});
+        super(vDados, new String[]{"Nome", "Data de Inicio", "Data de Fim", "Descrição", "Encerrado?"});
     }
     
     @Override
@@ -22,6 +22,8 @@ public class TratamentoTableModel extends GenericTableModel {
             case 2:
                 return String.class;
             case 3:
+                return String.class;
+            case 4:
                 return Boolean.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -40,6 +42,8 @@ public class TratamentoTableModel extends GenericTableModel {
             case 2:
                 return tratamento.getDtFim();
             case 3:
+                return tratamento.getDescricao();
+            case 4:
                 return tratamento.isEncerrado();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -61,7 +65,11 @@ public class TratamentoTableModel extends GenericTableModel {
                 tratamento.setDtFim((String) aValue);
                 break;
             case 3:
-                tratamento.setEncerrado((Boolean) aValue);
+                tratamento.setDescricao((String) aValue);
+                break;
+            case 4:
+                tratamento.setEncerrado(false);
+                break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

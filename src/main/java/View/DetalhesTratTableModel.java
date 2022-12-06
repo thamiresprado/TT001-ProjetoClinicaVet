@@ -1,5 +1,8 @@
 package View;
 
+import Model.Animal;
+import Model.AnimalDAO;
+import Model.ClienteDAO;
 import Model.Consulta;
 import Model.ConsultaDAO;
 import Model.Exame;
@@ -15,7 +18,7 @@ import java.util.List;
 public class DetalhesTratTableModel extends GenericTableModel {
     
     public DetalhesTratTableModel (List vDados){
-        super(vDados, new String[]{"Consulta", "Exame solicitado", "Veterinário responsável"});
+        super(vDados, new String[]{"Data", "Consulta", "Animal", "Veterinário responsável", "Exame"});
     }
     
     @Override
@@ -26,6 +29,10 @@ public class DetalhesTratTableModel extends GenericTableModel {
             case 1:
                 return String.class;
             case 2:
+                return String.class;
+            case 3:
+                return String.class;
+            case 4:
                 return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -44,48 +51,53 @@ public class DetalhesTratTableModel extends GenericTableModel {
         
         switch(columnIndex) {
             case 0:
-                return consulta.getDescricao();
+                return consulta.getData();
             case 1:
-                Exame exames = ExameDAO.getInstance().retrieveById(consulta.getId());
-                if(exames != null){
-                    return exames.getNome();
-                }
-                return "";
+                return consulta.getDescricao();
             case 2:
-                Veterinario veterinario = VeterinarioDAO.getInstance().retrieveById(consulta.getIdVet());
-                if (veterinario != null){
-                    return veterinario.getNome();
-                }
-                return "";
+                return AnimalDAO.getInstance().retrieveById(consulta.getIdAnimal()).getNome();
+//                return ClienteDAO.getInstance().retrieveById(animal.getClienteId()).getNome();
+            case 3:
+                return VeterinarioDAO.getInstance().retrieveById(consulta.getIdVet());
+            case 4:
+                return ExameDAO.getInstance().retrieveByIdConsulta(consulta.getId());
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
     }
 
                 
-//    @Override
-//    public void setValueAt(Object aValue,int rowIndex, int columnIndex) {
-//        Consulta consulta = (Consulta) vDados.get(rowIndex); 
-//        
-//        switch(columnIndex) {
-//            case 0:
-//                tratamento.setNome((String) aValue);
-//                break;
-//            case 1:
-//                tratamento.setDtIni((String) aValue);
-//                break;
-//            case 2:
-//                consulta.setIdVet((Integer) aValue);
-//                break;
-//            default:
-//                throw new IndexOutOfBoundsException("columnIndex out of bounds");
-//        }
-//        
-//       TratamentoDAO.getInstance().update(tratamento);
-//    }
-    
+    @Override
+    public void setValueAt(Object aValue,int rowIndex, int columnIndex) {
+        Consulta consulta = (Consulta) vDados.get(rowIndex); 
+        
+        switch(columnIndex) {
+            case 0:
+                consulta.setData((String) aValue);
+                break;
+            case 1:
+                consulta.setDescricao((String) aValue);
+                break;
+            case 2:
+                break;
+             case 3:
+                break;
+            case 4:
+                ExameDAO.getInstance().create((String) aValue, (String) aValue, consulta.getId());
+                break;
+            default:
+                throw new IndexOutOfBoundsException("columnIndex out of bounds");
+        }
+        
+       ConsultaDAO.getInstance().update(consulta);
+    }
+//    
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex){
-        return true;
+        if(columnIndex<=1||columnIndex>=4){
+            return true;
+        } else{
+            return false;
+        }
     }
 }
