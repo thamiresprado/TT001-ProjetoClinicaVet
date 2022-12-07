@@ -60,15 +60,15 @@ public class GerenciarVeterinario extends javax.swing.JDialog {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nome", "Email", "Telefone"
             }
         ));
+        jTable2.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable2.setSelectionForeground(new java.awt.Color(0, 153, 153));
+        jTable2.setShowGrid(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable2MousePressed(evt);

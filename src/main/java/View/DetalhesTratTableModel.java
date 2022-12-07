@@ -18,7 +18,7 @@ import java.util.List;
 public class DetalhesTratTableModel extends GenericTableModel {
     
     public DetalhesTratTableModel (List vDados){
-        super(vDados, new String[]{"Data", "Consulta", "Animal", "Veterinário responsável", "Exame"});
+        super(vDados, new String[]{"Data", "Descrição", "Animal", "Veterinário responsável", "Exame"});
     }
     
     @Override

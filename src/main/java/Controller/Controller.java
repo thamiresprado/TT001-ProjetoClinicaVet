@@ -140,7 +140,7 @@ public class Controller {
     public static void limpaExibicao(JTable table) {
         if (table.getModel() instanceof TratamentoTableModel) {
             ((TratamentoTableModel) table.getModel()).clear();
-        }
+        } 
     }
 
     //BUSCA NOS CAMPOS
@@ -161,7 +161,6 @@ public class Controller {
 
     public static Animal adicionaAnimal(String nome, int idade, String sexo, int idCliente, int idEspecie) {
         return AnimalDAO.getInstance().create(nome, idade, sexo, idCliente, idEspecie);
-        //("", 0, false, clienteselecionado, 1)
     }
     
     public static Veterinario adicionaVeterinario(int id, String nome, String email, String telefone){
@@ -199,16 +198,12 @@ public class Controller {
     }
    
    public static void removerTratamento(Tratamento tratamento){
-       TratamentoDAO.getInstance().delete(tratamento);
-   }
-    
-   public static void filtraConsultas(JTable table, JCheckBox todos, JCheckBox hoje, JCheckBox vet){
-           String where = "";
-           if(!todos.isSelected()){
-               where = "WHERE data >= date('now')";
-           }
-           
-           String query = "SELECT * FROM consulta"+where+"ORDER BY data";
-           ((DetalhesTratTableModel) table.getModel()).addListOfItems(ConsultaDAO.getInstance().retrieve(query));
+//       TratamentoDAO.getInstance().delete(tratamento);
+     List <Consulta> consultas = ConsultaDAO.getInstance().retrieveByIdTratamento(tratamento.getId());
+       for (Consulta consulta : consultas){
+           ConsultaDAO.getInstance().delete(consulta);
+       }
+        TratamentoDAO.getInstance().delete(tratamento);
+        
    }
 }

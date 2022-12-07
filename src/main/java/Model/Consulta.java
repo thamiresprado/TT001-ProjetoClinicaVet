@@ -53,4 +53,9 @@ public class Consulta {
     public int getIdTratamento() {
         return idTratamento;
     }
+    
+    public String toString() {
+        String desc = "Consulta {" + "id= " + id + ", descricao= " + descricao + '\n';
+        return desc;
+    }
 }

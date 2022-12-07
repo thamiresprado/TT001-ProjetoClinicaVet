@@ -1,9 +1,6 @@
 package View;
 
-import Model.VeterinarioDAO;
 import com.formdev.flatlaf.FlatDarculaLaf;
-import java.util.Calendar;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 /**
@@ -114,7 +111,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setShowGrid(false);
+        jTable1.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable1.setSelectionForeground(new java.awt.Color(0, 153, 153));
+        jTable1.setShowGrid(true);
+        jTable1.setShowHorizontalLines(true);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable1MousePressed(evt);
@@ -162,6 +162,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 "Nome", "Idade", "Sexo", "Cliente", "Espécie"
             }
         ));
+        jTable2.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable2.setSelectionForeground(new java.awt.Color(0, 153, 153));
+        jTable2.setShowGrid(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable2MousePressed(evt);
@@ -333,15 +336,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Data", "Descrição", "Animal", "Veterinário responsável", "Tratamento"
+                "Data", "Descrição", "Animal", "Veterinário responsável", "Exame"
             }
         ));
+        jTable5.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable5.setSelectionForeground(new java.awt.Color(0, 153, 153));
+        jTable5.setShowGrid(true);
         jScrollPane5.setViewportView(jTable5);
 
         jButton8.setBackground(new java.awt.Color(102, 0, 0));
@@ -354,6 +357,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Adicionar consulta");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,6 +404,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ));
         jTable4.setToolTipText("");
+        jTable4.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable4.setSelectionForeground(new java.awt.Color(0, 153, 153));
+        jTable4.setShowGrid(true);
         jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable4MousePressed(evt);
@@ -417,6 +424,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jButton10.setBackground(new java.awt.Color(102, 0, 0));
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Remover Tratamento");
         jButton10.setBorderPainted(false);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -476,7 +484,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,7 +496,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -500,8 +508,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Controller.Controller.setSelected(((ClienteTableModel) jTable1.getModel()).getItem(jTable1.getSelectedRow())); //retorna a linha selecionada e o setselected define qual é o objeto
         Controller.Controller.tabelaClienteSelected(jTable2);
         
-//        Controller.Controller.limpaExibicao(jTable3);
         Controller.Controller.limpaExibicao(jTable4);
+        Controller.Controller.limpaExibicao(jTable5);
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
@@ -509,10 +517,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         jTextField4.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 4).toString());
         
-//        Controller.Controller.tabelaAnimalSelected(jTable3);
         Controller.Controller.tabelaAnimalSelected1(jTable4);
-//        Controller.Controller.tabelaAnimalSelected2(jTable6);
         Controller.Controller.tabelaTratamentoSelected(jTable5);
+        Controller.Controller.limpaExibicao(jTable5);
     }//GEN-LAST:event_jTable2MousePressed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -532,8 +539,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField11MousePressed
-//        GerenciarVeterinario popup = new GerenciarVeterinario();
-//        popup.setVisible(true);
         GerenciarVeterinario veterinarioLista = new GerenciarVeterinario();
         veterinarioLista.setModal(true);
         veterinarioLista.setVisible(true);
@@ -556,7 +561,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField11ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
         Controller.Controller.removerTratamento(Controller.Controller.getTratamentoSelecionado());
         ((TratamentoTableModel) jTable4.getModel()).removeItem(jTable4.getSelectedRow());
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -577,7 +581,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        //        Controller.Controller.removerConsulta(Controller.Controller.getConsultaSelecionada());
+//        Controller.Controller.removerConsulta(Controller.Controller.getConsultaSelecionada());
         ((DetalhesTratTableModel) jTable5.getModel()).removeItem(jTable5.getSelectedRow());
     }//GEN-LAST:event_jButton8ActionPerformed
     
